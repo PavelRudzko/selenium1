@@ -23,37 +23,54 @@ class ATestScanner {
     private val content = Content()
     private val floatMenu = FloatMenu()
 
-
-    val COUPONS = "1"
-    val FAG = "4"
-    val CONTACT_US = "6"
-    val MENU = "7"
+    private val COUPONS = "1"
+    private val FAG = "4"
+    private val CONTACT_US = "6"
+    private val MENU = "7"
 
     private val TEST_IMAGE_URL = "https://cdn.guru99.com/images/image015(3).png"
     private val TEST_IMAGE_URL2 = "https://www.lotus-qa.com/wp-content/uploads/2020/02/testing.jpg"
 
-    private val PAUSE: Long = 500L
+    private val PAUSE_MILISEC: Long = 500L
 
-    lateinit var elenentDeleteMy: WebElement
-    lateinit var elenentEditeMy: WebElement
+    lateinit var elementDeleteMy: WebElement
+    lateinit var elementEditeMy: WebElement
 
     var rowToDelete: Int = 0
     var colToDelete: Int = 0
 
-    val EDITE = "Edit"
-    val DELETE = "Delete"
+    private val EDITE = "Edit"
+    private val DELETE = "Delete"
 
 
-    @BeforeEach
-    fun setUpAll() {
-        Configuration.browserSize = "1280x800"
-        SelenideLogger.addListener("allure", AllureSelenide())
+    companion object {
+        @BeforeAll
+        @JvmStatic
+        internal fun beforeAll() {
+            println("'Before All' called")
+            Configuration.browserSize = "1280x800"
+            SelenideLogger.addListener("allure", AllureSelenide())
+            Selenide.open("http://localhost:8090/admin/scanner/content")
+        }
+
+        @AfterAll
+        @JvmStatic
+        internal fun afterAll() {
+            println("'After All' called")
+        }
+
     }
 
-    @BeforeEach
-    fun setUp() {
-        Selenide.open(urlForTest)
-    }
+//    @BeforeEach
+//    fun setUpAll() {
+//        Configuration.browserSize = "1280x800"
+//        SelenideLogger.addListener("allure", AllureSelenide())
+//    }
+//
+//    @BeforeEach
+//    fun setUp() {
+//        Selenide.open(urlForTest)
+//    }
 
 
     @Test
@@ -64,12 +81,6 @@ class ATestScanner {
         logIn()
     }
 
-    @Test
-    @Order(2)
-    @DisplayName("Go to 'user list'")
-    fun tes2Users() {
-        floatMenu.goToUsers.click()
-    }
 
     @Test
     @Order(3)
@@ -121,6 +132,47 @@ class ATestScanner {
 
         println("Pause")
         Thread.sleep(5_000)
+    }
+
+
+    @Test
+    @Order(8)
+    @DisplayName("Go to 'user list'")
+    fun tes2Users() {
+        floatMenu.goToScans.click()
+
+        element(".show-filter").click()
+        pause()
+        element(".input").sendKeys("114")
+        pause()
+        element(".submit").click()
+
+        val simpleTable = element(".tab > tbody:nth-child(1)")
+
+        val rows: List<WebElement> = simpleTable.findElements(By.tagName("tr"))
+
+        //Print data from each row
+        for (row in rows) {
+            val cols = row.findElements(By.tagName("td"))
+            cols.forEach {
+                print(it.text + "\t")
+            }
+            println()
+        }
+
+        for (row in rows) {
+            val cols = row.findElements(By.tagName("td"))
+
+            for (col in cols) {
+                if (col.text == "1624262591862") print("We found it!!") else print("-*-")
+            }
+            println("------------")
+        }
+
+
+        println("Finish!")
+        Thread.sleep(3_000)
+
     }
 
 
@@ -235,7 +287,7 @@ class ATestScanner {
 
                     if (index == 7) println("$index) ${webElement.text}  / edit = $delThisElement ***")
                     if (index == 7 && editThisElement) {
-                        elenentEditeMy = webElement.findElement(By.xpath(".//a"))
+                        elementEditeMy = webElement.findElement(By.xpath(".//a"))
                         println("Found element !!!!")
                         editThisElement = false
                     }
@@ -244,7 +296,7 @@ class ATestScanner {
 
                     if (index == 8) println("$index) ${webElement.text}  / del = $delThisElement ***")
                     if (index == 8 && delThisElement) {
-                        elenentDeleteMy = webElement.findElement(By.xpath(".//a"))
+                        elementDeleteMy = webElement.findElement(By.xpath(".//a"))
                         println("Found element !!!!")
                         delThisElement = false
                     }
@@ -255,11 +307,11 @@ class ATestScanner {
         }
 
         if (clickOn == EDITE) {
-            elenentEditeMy.click()
+            elementEditeMy.click()
             println("Click to edit element row # $rowToDelete")
 
         } else {
-            elenentDeleteMy.click()
+            elementDeleteMy.click()
             println("Click to delete element row # $rowToDelete")
         }
 
@@ -268,6 +320,6 @@ class ATestScanner {
     }
 
 
-    private fun pause() = Thread.sleep(PAUSE)
+    private fun pause() = Thread.sleep(PAUSE_MILISEC)
 
 }
