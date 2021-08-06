@@ -1,4 +1,4 @@
-package com.example.Selenium4
+package com.example.selenium
 
 import com.codeborne.selenide.Condition.attribute
 import com.codeborne.selenide.Condition.visible
