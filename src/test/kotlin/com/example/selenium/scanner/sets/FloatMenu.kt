@@ -10,4 +10,6 @@ class FloatMenu {
 
     val goToScans =
         Selenide.element(By.id("goToScans"))
+    val goToOffices =
+        Selenide.element(By.id("goToOffices"))
 }

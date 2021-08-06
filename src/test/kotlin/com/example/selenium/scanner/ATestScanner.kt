@@ -7,6 +7,8 @@ import com.codeborne.selenide.logevents.SelenideLogger
 import com.example.selenium.scanner.sets.Content
 import com.example.selenium.scanner.sets.FloatMenu
 import com.example.selenium.scanner.sets.LogInPage
+import com.example.selenium.scanner.sets.Offices
+
 import io.qameta.allure.selenide.AllureSelenide
 import org.junit.jupiter.api.*
 import org.openqa.selenium.By
@@ -22,6 +24,7 @@ class ATestScanner {
     private val mainPage = LogInPage()
     private val content = Content()
     private val floatMenu = FloatMenu()
+    private val office = Offices()
 
     private val COUPONS = "1"
     private val FAG = "4"
@@ -98,7 +101,6 @@ class ATestScanner {
     fun test4goToEdit() {
         println("---- Find Consent and click Edit ----")
         findAndClick(EDITE)
-
     }
 
     @Test
@@ -141,11 +143,15 @@ class ATestScanner {
     fun tes2Users() {
         floatMenu.goToScans.click()
 
-        element(".show-filter").click()
-        pause()
-        element(".input").sendKeys("114")
-        pause()
-        element(".submit").click()
+
+        listOf(10, 11, 114).forEach {
+            element(".show-filter").click()
+            pause()
+            element(".input").sendKeys("$it")
+            pause()
+            element(".submit").click()
+        }
+
 
         val simpleTable = element(".tab > tbody:nth-child(1)")
 
@@ -176,7 +182,18 @@ class ATestScanner {
     }
 
 
-    private fun logIn() {
+    @Test
+    @Order(8)
+    @DisplayName("Go to 'Offices'")
+    fun tes2Udsers() {
+        floatMenu.goToOffices.click()
+
+
+
+
+    }
+
+        private fun logIn() {
         mainPage.passwordInput.sendKeys("1111")
         mainPage.usernameInput.sendKeys("1111")
         mainPage.input.click()
