@@ -21,17 +21,30 @@ class Content {
 
 
     // Fill form
-    val imputTopImageUrl =
-        Selenide.element("#topImageUrl")
 
     val imputThumbUrl =
         Selenide.element("#thumbUrl")
+
+    val imputTopImageUrl =
+        Selenide.element("#topImageUrl")
+    val imputBackUrl =
+        Selenide.element("#backUrl")
+
+    val imputTopText =
+        Selenide.element("#topText")
+    val imputSubText=
+        Selenide.element("#subText")
+    val imputDescription=
+        Selenide.element("#description")
 
     val selectSection =
         Selenide.element(By.id("section"))
 
     val inputColor =
         Selenide.element("#color")
+
+    val inputLinecolor =
+        Selenide.element("#linecolor")
 
     val btnCreateContent =
         Selenide.element("#createContent")

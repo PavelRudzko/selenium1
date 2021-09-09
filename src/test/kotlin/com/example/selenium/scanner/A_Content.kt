@@ -16,44 +16,22 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.Select
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
-class ATestScanner {
-
-    val urlForTest = "http://localhost:8090/admin/scanner/content"
-//    val urlForTest = "http://q11.jvmhost.net/admin/scanner/content"
-
-    private val mainPage = LogInPage()
-    private val content = Content()
-    private val floatMenu = FloatMenu()
-    private val office = Offices()
-
-    private val COUPONS = "1"
-    private val FAG = "4"
-    private val CONTACT_US = "6"
-    private val MENU = "7"
-
-    private val TEST_IMAGE_URL = "https://cdn.guru99.com/images/image015(3).png"
-    private val TEST_IMAGE_URL2 = "https://www.lotus-qa.com/wp-content/uploads/2020/02/testing.jpg"
-
-    private val PAUSE_MILISEC: Long = 500L
-
-    lateinit var elementDeleteMy: WebElement
-    lateinit var elementEditeMy: WebElement
-
-    var rowToDelete: Int = 0
-    var colToDelete: Int = 0
-
-    private val EDITE = "Edit"
-    private val DELETE = "Delete"
-
+class A_Content {
 
     companion object {
+
+
+//        val urlForTest = "http://localhost:8090/admin/scanner/content"
+            val urlForTest = "http://q11.jvmhost.net/admin/scanner/content"
+
         @BeforeAll
         @JvmStatic
         internal fun beforeAll() {
             println("'Before All' called")
-            Configuration.browserSize = "1280x800"
+            Configuration.browserSize = "1280x1000"
             SelenideLogger.addListener("allure", AllureSelenide())
-            Selenide.open("http://localhost:8090/admin/scanner/content")
+//            Selenide.open("http://localhost:8090/admin/scanner/content")
+            Selenide.open(urlForTest)
         }
 
         @AfterAll
@@ -63,6 +41,32 @@ class ATestScanner {
         }
 
     }
+
+    private val mainPage = LogInPage()
+    private val content = Content()
+    private val floatMenu = FloatMenu()
+
+    private val office = Offices()
+    private val COUPONS = "1"
+    private val FAG = "4"
+    private val CONTACT_US = "6"
+
+    private val MENU = "9"
+    private val TEST_IMAGE_URL = "https://cdn.guru99.com/images/image015(3).png"
+
+    private val TEST_IMAGE_URL2 = "https://www.lotus-qa.com/wp-content/uploads/2020/02/testing.jpg"
+
+    private val PAUSE_MILISEC: Long = 500L
+    lateinit var elementDeleteMy: WebElement
+
+    lateinit var elementEditeMy: WebElement
+    var rowToDelete: Int = 0
+
+    var colToDelete: Int = 0
+    private val EDITE = "Edit"
+
+
+    private val DELETE = "Delete"
 
 //    @BeforeEach
 //    fun setUpAll() {
@@ -109,7 +113,7 @@ class ATestScanner {
     fun test6Consents() {
 
         println("---- Edit Consent ----")
-        editConsent(TEST_IMAGE_URL2)
+        editConsent()
 
         println("---- Click back to 'Consents' ----")
         content.backToContents.click()
@@ -200,10 +204,10 @@ class ATestScanner {
     }
 
 
-    private fun editConsent(image: String = TEST_IMAGE_URL) = addConsent(image)
+    private fun editConsent() = addConsent(isEdit = true)
 
 
-    private fun addConsent(image: String = TEST_IMAGE_URL) {
+    private fun addConsent(isEdit: Boolean = false) {
 
         val c = content.selectSection
         c.click()
@@ -214,15 +218,36 @@ class ATestScanner {
         pause()
 
         content.inputColor.clear()
-        content.inputColor.sendKeys("#FFFF00")
+        content.inputColor.sendKeys(if(isEdit) "#FFFF02" else "#FFFF00")
+        pause()
+
+        content.inputLinecolor.clear()
+        content.inputLinecolor.sendKeys(if(isEdit) "#008002" else "#008000")
         pause()
 
         content.imputTopImageUrl.clear()
-        content.imputTopImageUrl.sendKeys(image)
+        content.imputTopImageUrl.sendKeys(if(isEdit) TEST_IMAGE_URL else TEST_IMAGE_URL2)
+        pause()
+
+        content.imputBackUrl.clear()
+        content.imputBackUrl.sendKeys(if(isEdit) TEST_IMAGE_URL else TEST_IMAGE_URL2)
         pause()
 
         content.imputThumbUrl.clear()
-        content.imputThumbUrl.sendKeys(TEST_IMAGE_URL)
+        content.imputThumbUrl.sendKeys(if(isEdit) TEST_IMAGE_URL else TEST_IMAGE_URL2)
+        pause()
+
+
+        content.imputTopText.clear()
+        content.imputTopText.sendKeys(if(isEdit) "Test Tot text (Edit)" else "Test Tot text")
+        pause()
+
+        content.imputSubText.clear()
+        content.imputSubText.sendKeys(if(isEdit) "Test Sub text (Edit)" else "Test Sub text")
+        pause()
+
+        content.imputDescription.clear()
+        content.imputDescription.sendKeys(if(isEdit) "Test Description (Edit)" else  "Test Description ")
         pause()
 
         content.btnCreateContent.click()
@@ -302,8 +327,8 @@ class ATestScanner {
 
                 if (clickOn == EDITE) {
 
-                    if (index == 7) println("$index) ${webElement.text}  / edit = $delThisElement ***")
-                    if (index == 7 && editThisElement) {
+                    if (index == 11) println("$index) ${webElement.text}  / edit = $delThisElement ***")
+                    if (index == 11 && editThisElement) {
                         elementEditeMy = webElement.findElement(By.xpath(".//a"))
                         println("Found element !!!!")
                         editThisElement = false
@@ -311,8 +336,8 @@ class ATestScanner {
 
                 } else if (clickOn == DELETE) {
 
-                    if (index == 8) println("$index) ${webElement.text}  / del = $delThisElement ***")
-                    if (index == 8 && delThisElement) {
+                    if (index == 12) println("$index) ${webElement.text}  / del = $delThisElement ***")
+                    if (index == 12 && delThisElement) {
                         elementDeleteMy = webElement.findElement(By.xpath(".//a"))
                         println("Found element !!!!")
                         delThisElement = false

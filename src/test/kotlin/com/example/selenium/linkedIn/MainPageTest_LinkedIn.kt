@@ -13,7 +13,7 @@ class MainPageTest_LinkedIn {
 
     @BeforeEach
     fun setUpAll() {
-        Configuration.browserSize = "1280x800"
+        Configuration.browserSize = "1280x1000"
         SelenideLogger.addListener("allure", AllureSelenide())
     }
 
@@ -27,8 +27,8 @@ class MainPageTest_LinkedIn {
 
 
 
-        linkedIn.inputLog.sendKeys("html.akordirect@gmail.com")
-        linkedIn.inputPas.sendKeys("HelloHtml20") // todo add password
+        linkedIn.inputLog.sendKeys("Test@gmail.com")
+        linkedIn.inputPas.sendKeys("test")
         linkedIn.signInButton.click()
         println("dm:: click button")
 //        mainPage.passwordInput.sendKeys("1111")
@@ -45,13 +45,13 @@ class MainPageTest_LinkedIn {
 
         for (i in 2..15) {
             println("dm:: --- Open page #$i --- ")
-//            open("https://www.linkedin.com/search/results/all/?keywords=HR%20USA%20New%20York&origin=GLOBAL_SEARCH_HEADER&page=$i")
-//            open("https://www.linkedin.com/search/results/all/?keywords=human%20resources%20USA%20California&origin=GLOBAL_SEARCH_HEADER&page=$i")
-//            open("https://www.linkedin.com/search/results/all/?keywords=HR%20USA%20California&origin=GLOBAL_SEARCH_HEADER&page=$i")
-            open("https://www.linkedin.com/search/results/all/?keywords=HR%LA&origin=GLOBAL_SEARCH_HEADER&page=$i")
+//            open("https://www.linkedin.com/search/results/people/?keywords=HR%20USA%20New%20York&origin=GLOBAL_SEARCH_HEADER&page=$i")
+//            open("https://www.linkedin.com/search/results/people/?keywords=human%20resources%20USA%20California&origin=GLOBAL_SEARCH_HEADER&page=$i")
+            open("https://www.linkedin.com/search/results/people/?keywords=HR%20USA%20California&origin=GLOBAL_SEARCH_HEADER&page=$i")
+//            open("https://www.linkedin.com/search/results/people/?keywords=HR%LA&origin=GLOBAL_SEARCH_HEADER&page=$i")
+//            open("https://www.linkedin.com/search/results/people/?keywords=hr ny&origin=CLUSTER_EXPANSION&page=$i")
+//            open("https://www.linkedin.com/search/results/people/?keywords=hr new york&origin=CLUSTER_EXPANSION&page=$i")
 
-//            open("https://www.linkedin.com/search/results/all/?keywords=android%20developer%20USA%20LA&origin=GLOBAL_SEARCH_HEADER&page=$i")
-//            open("https://www.linkedin.com/search/results/all/?keywords=android%20developer%20New%20York&origin=GLOBAL_SEARCH_HEADER&page=$i")
 //            Thread.sleep(1_000)
            val simpleTable = element(".reusable-search__entity-results-list")
 
