@@ -74,10 +74,10 @@ class A_Content {
 //        SelenideLogger.addListener("allure", AllureSelenide())
 //    }
 //
-//    @BeforeEach
-//    fun setUp() {
-//        Selenide.open(urlForTest)
-//    }
+    @BeforeEach
+    fun printIng() {
+    println("---- Next test: ----")
+    }
 
 
     @Test
