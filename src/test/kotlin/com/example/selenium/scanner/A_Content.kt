@@ -16,13 +16,13 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.Select
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
-class A_Content {
+class A_Content() {
 
     companion object {
 
 
-//        val urlForTest = "http://localhost:8090/admin/scanner/content"
-            val urlForTest = "http://q11.jvmhost.net/admin/scanner/content"
+        //        val urlForTest = "http://localhost:8090/admin/scanner/content"
+        val urlForTest = "http://q11.jvmhost.net/admin/scanner/content"
 
         @BeforeAll
         @JvmStatic
@@ -68,16 +68,16 @@ class A_Content {
 
     private val DELETE = "Delete"
 
-//    @BeforeEach
-//    fun setUpAll() {
-//        Configuration.browserSize = "1280x800"
-//        SelenideLogger.addListener("allure", AllureSelenide())
-//    }
-//
-//    @BeforeEach
-//    fun setUp() {
-//        Selenide.open(urlForTest)
-//    }
+    @BeforeEach
+    fun setUpAll() {
+        Configuration.browserSize = "1280x800"
+        SelenideLogger.addListener("allure", AllureSelenide())
+    }
+
+    @BeforeEach
+    fun setUp() {
+        Selenide.open(urlForTest)
+    }
 
 
     @Test
@@ -90,30 +90,20 @@ class A_Content {
 
 
     @Test
-    @Order(3)
-    @DisplayName("Add consent")
-    fun test3addConsents() {
-        //        // Add element
-        println("---- Add Consent ----")
-        addConsent()
-
-    }
-
-    @Test
-    @Order(4)
-    @DisplayName("Find last Consent and click Edit")
+    @Order(2)
+    @DisplayName("Find  Content and click Edit")
     fun test4goToEdit() {
         println("---- Find Consent and click Edit ----")
         findAndClick(EDITE)
     }
 
     @Test
-    @Order(5)
-    @DisplayName("Edit Consent")
-    fun test6Consents() {
+    @Order(3)
+    @DisplayName("Edit Content")
+    fun testEditContent() {
 
-        println("---- Edit Consent ----")
-        editConsent()
+        println("---- Edit Content ----")
+        editContent()
 
         println("---- Click back to 'Consents' ----")
         content.backToContents.click()
@@ -121,20 +111,31 @@ class A_Content {
 
 
     @Test
-    @Order(6)
-    @DisplayName("Delete Consent")
-    fun test6Consents2() {
-        println("---- Find Consent and click 'Delete' ----")
+    @Order(4)
+    @DisplayName("Add content")
+    fun testAddContent() {
+        //        // Add element
+        println("---- Add Content ----")
+        addContent()
+
+    }
+
+
+    @Test
+    @Order(5)
+    @DisplayName("Delete Content")
+    fun testDeleteContents() {
+        println("---- Find Content and click 'Delete' ----")
         findAndClick(DELETE)
     }
 
 
     @Test
-    @Order(7)
+    @Order(6)
     @DisplayName("Check filter")
-    fun test7Consents() {
+    fun testFilterContents() {
         println("---- Check filter ----")
-        filterConsents()
+        filterContents()
 
         println("Pause")
         Thread.sleep(5_000)
@@ -142,10 +143,10 @@ class A_Content {
 
 
     @Test
-    @Order(8)
+    @Order(7)
     @DisplayName("Go to 'user list'")
-    fun tes2Users() {
-        floatMenu.goToScans.click()
+    fun testGoToUsers() {
+        floatMenu.goToUsers.click()
 
 
         listOf(10, 11, 114).forEach {
@@ -154,6 +155,8 @@ class A_Content {
             element(".input").sendKeys("$it")
             pause()
             element(".submit").click()
+
+
         }
 
 
@@ -177,6 +180,7 @@ class A_Content {
                 if (col.text == "1624262591862") print("We found it!!") else print("-*-")
             }
             println("------------")
+
         }
 
 
@@ -189,74 +193,21 @@ class A_Content {
     @Test
     @Order(8)
     @DisplayName("Go to 'Offices'")
-    fun tes2Udsers() {
+    fun testGoToOffices() {
         floatMenu.goToOffices.click()
-
-
 
 
     }
 
-        private fun logIn() {
+
+    private fun logIn() {
         mainPage.passwordInput.sendKeys("1111")
         mainPage.usernameInput.sendKeys("1111")
         mainPage.input.click()
     }
 
 
-    private fun editConsent() = addConsent(isEdit = true)
-
-
-    private fun addConsent(isEdit: Boolean = false) {
-
-        val c = content.selectSection
-        c.click()
-        pause()
-
-//        Select(c).selectByIndex(7 - 1)
-        Select(c).selectByValue(MENU)
-        pause()
-
-        content.inputColor.clear()
-        content.inputColor.sendKeys(if(isEdit) "#FFFF02" else "#FFFF00")
-        pause()
-
-        content.inputLinecolor.clear()
-        content.inputLinecolor.sendKeys(if(isEdit) "#008002" else "#008000")
-        pause()
-
-        content.imputTopImageUrl.clear()
-        content.imputTopImageUrl.sendKeys(if(isEdit) TEST_IMAGE_URL else TEST_IMAGE_URL2)
-        pause()
-
-        content.imputBackUrl.clear()
-        content.imputBackUrl.sendKeys(if(isEdit) TEST_IMAGE_URL else TEST_IMAGE_URL2)
-        pause()
-
-        content.imputThumbUrl.clear()
-        content.imputThumbUrl.sendKeys(if(isEdit) TEST_IMAGE_URL else TEST_IMAGE_URL2)
-        pause()
-
-
-        content.imputTopText.clear()
-        content.imputTopText.sendKeys(if(isEdit) "Test Tot text (Edit)" else "Test Tot text")
-        pause()
-
-        content.imputSubText.clear()
-        content.imputSubText.sendKeys(if(isEdit) "Test Sub text (Edit)" else "Test Sub text")
-        pause()
-
-        content.imputDescription.clear()
-        content.imputDescription.sendKeys(if(isEdit) "Test Description (Edit)" else  "Test Description ")
-        pause()
-
-        content.btnCreateContent.click()
-        pause()
-        println(" --- Clicked button 'Add content' ----")
-    }
-
-
-    private fun filterConsents() {
+    private fun filterContents() {
 
         val list = listOf<String>(COUPONS, FAG, CONTACT_US, MENU)
 
@@ -272,11 +223,8 @@ class A_Content {
 
             content.showResult.click()
         }
-
-
         content.showFilter.click()
         pause()
-
         content.resetFilter.click()
     }
 
@@ -363,5 +311,65 @@ class A_Content {
 
 
     private fun pause() = Thread.sleep(PAUSE_MILISEC)
+
+
+    // private fun editContent() = addContent(isEdit = true)
+
+
+    private fun addContent(isEdit: Boolean = false) {
+        val button = Selenide.element("button[type='submit']")
+        //val selenideElement = content.selectSection
+        button.click()
+        println("Content Add")
+        pause()
+        val selenideElement = content.selectSection
+
+        Select(selenideElement).selectByValue(MENU)
+        pause()
+
+        content.inputColor.clear()
+        content.inputColor.sendKeys(if (isEdit) "#FFFF02" else "#FFFF00")
+        pause()
+
+        content.inputLinecolor.clear()
+        content.inputLinecolor.sendKeys(if (isEdit) "#008002" else "#008000")
+        pause()
+
+        content.inputTopImageUrl.clear()
+        content.inputTopImageUrl.sendKeys(if (isEdit) TEST_IMAGE_URL else TEST_IMAGE_URL2)
+        pause()
+
+        content.inputBackUrl.clear()
+        content.inputBackUrl.sendKeys(if (isEdit) TEST_IMAGE_URL else TEST_IMAGE_URL2)
+        pause()
+
+        content.inputThumbUrl.clear()
+        content.inputThumbUrl.sendKeys(if (isEdit) TEST_IMAGE_URL else TEST_IMAGE_URL2)
+        pause()
+
+
+        content.inputTopText.clear()
+        content.inputTopText.sendKeys(if (isEdit) "Test Tot text (Edit)" else "Test Tot text")
+        pause()
+
+        content.inputSubText.clear()
+        content.inputSubText.sendKeys(if (isEdit) "Test Sub text (Edit)" else "Test Sub text")
+        pause()
+
+        content.inputDescription.clear()
+        content.inputDescription.sendKeys(if (isEdit) "Test Description (Edit)" else "Test Description ")
+        pause()
+
+        content.btnCreateContent.click()
+        pause()
+        println(" --- Clicked button 'Add content' ----")
+    }
+
+    private fun editContent() {
+        val simpleTables: List<WebElement> = Selenide.elements(".tab")
+        val links: List<WebElement> = simpleTables[1].findElements(By.cssSelector("a#edit"))
+        val link = links[0]
+
+    }
 
 }

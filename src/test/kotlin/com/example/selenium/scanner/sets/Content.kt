@@ -5,7 +5,6 @@ import org.openqa.selenium.By
 
 class Content {
 
-
     // Filter
     val showFilter =
         Selenide.element("#showFilter")
@@ -19,22 +18,21 @@ class Content {
     val resetFilter =
         Selenide.element("#resetFilter")
 
-
     // Fill form
 
-    val imputThumbUrl =
+    val inputThumbUrl =
         Selenide.element("#thumbUrl")
 
-    val imputTopImageUrl =
+    val inputTopImageUrl =
         Selenide.element("#topImageUrl")
-    val imputBackUrl =
+    val inputBackUrl =
         Selenide.element("#backUrl")
 
-    val imputTopText =
+    val inputTopText =
         Selenide.element("#topText")
-    val imputSubText=
+    val inputSubText =
         Selenide.element("#subText")
-    val imputDescription=
+    val inputDescription =
         Selenide.element("#description")
 
     val selectSection =

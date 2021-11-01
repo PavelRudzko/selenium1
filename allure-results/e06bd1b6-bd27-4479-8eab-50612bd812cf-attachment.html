@@ -1,0 +1,380 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs"><head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="robots" content="all, follow">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>Great admin</title>   
+    <link href="../../public/css/default.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../../public/css/blue.css" rel="stylesheet" type="text/css" media="screen"> <!-- color skin: blue / red / green / dark -->
+    <link href="../../public/css/datePicker.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../../public/css/wysiwyg.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../../public/css/fancybox-1.3.1.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="../../public/css/visualize.css" rel="stylesheet" type="text/css" media="screen">
+    
+    <script type="text/javascript" src="../../public/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="../../public/js/jquery.dimensions.min.js"></script>
+
+    <!-- // Tabs // -->
+    <script type="text/javascript" src="../../public/js/ui.core.js"></script>
+    <script type="text/javascript" src="../../public/js/jquery.ui.tabs.min.js"></script>
+
+    <!-- // Table drag and drop rows // -->
+    <script type="text/javascript" src="../../public/js/tablednd.js"></script>
+
+    <!-- // Date Picker // -->
+    <script type="text/javascript" src="../../public/js/date.js"></script>
+    <!--[if IE]><script type="text/javascript" src="../../public/js/jquery.bgiframe.js"></script><![endif]-->
+    <script type="text/javascript" src="../../public/js/jquery.datePicker.js"></script>
+
+    <!-- // Wysiwyg // -->
+    <script type="text/javascript" src="../../public/js/jquery.wysiwyg.js"></script>
+
+    <!-- // Graphs // -->
+    <script type="text/javascript" src="../../public/js/excanvas.js"></script>
+    <script type="text/javascript" src="../../public/js/jquery.visualize.js"></script>
+
+    <!-- // Fancybox // -->
+  	<script type="text/javascript" src="../../public/js/jquery.fancybox-1.3.1.js"></script>
+
+    <!-- // File upload // -->
+    <script type="text/javascript" src="../../public/js/jquery.filestyle.js"></script>
+
+    <script type="text/javascript" src="../../public/js/init.js"></script>
+  </head>
+  <body>
+  <div id="main">
+    <!-- #header -->
+    <div id="header">
+      <!-- #logo -->
+      <div id="logo">
+        <a href="index.html" title="Go to Homepage"><span>Great Admin</span></a>
+      </div>
+      <!-- /#logo -->
+
+      <!-- #user -->
+      <div id="user">
+                <div>
+                    Logged user: <span>1111</span> |
+                    Role: <span>[ROLE_USER]</span> |
+                    <a href="/logout">logout</a>
+                </div>
+            </div>
+      <!-- /#user -->
+
+    </div>
+    <!-- /header -->
+
+
+      <!-- #content -->
+    <div id="content">
+
+        <!-- breadcrumbs -->
+        <div class="breadcrumbs" id="breadcrumbs">
+            <ul>
+                <li class="home"> Scanner  </li>
+                <li> Content </li>
+            </ul>
+        </div>
+        <!-- /breadcrumbs -->
+
+      <!-- box -->
+<!--        graphs bar-->
+       <!-- /box -->
+
+
+        <!-- box -->
+<!--        <div class="box">-->
+<!--          <div class="headlines">-->
+<!--            <h2><span>Table list</span></h2>-->
+<!--            <a href="#" class="show-filter" id="showFilter">show filter</a>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; filter &ndash;&gt;-->
+<!--          <div class="filter">-->
+<!--              <form  th:action="@{content}" method="get"  id="form22">-->
+<!--&lt;!&ndash;            <input type="text" name="sectionId" title="column one" class="input" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                      <select id="sectionFilter" class="select"  name="sectionId"  >&ndash;&gt;-->
+<!--&lt;!&ndash;                          <option value="1">1 Coupons</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <option value="2">2 Activities</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <option value="3">3 FAQ</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <option value="4">4 Offers</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <option value="5">5 Refer a friend</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <option value="6">6 Contact Us</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <option value="7">7 Menu</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </select>&ndash;&gt;-->
+
+<!--                  <select id="sectionFilter" class="select" name="sectionId" >-->
+<!--                      <option th:each="section : ${sections}" th:value="${section.id}" th:text="${section.id} + '. ' + ${section.name}">-->
+<!--                      </option>-->
+<!--                  </select>-->
+
+
+<!--              <input id="showResult" type="submit" value="Show result" class="submit"/>-->
+<!--              <a id="resetFilter" href="#" th:href="@{'/admin/scanner/content'}" >Reset filter</a>-->
+<!--              </form>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; /filter &ndash;&gt;-->
+
+<!--          &lt;!&ndash; table &ndash;&gt;-->
+<!--          <table class="tab tab-drag">-->
+<!--            <tr class="top nodrop nodrag">-->
+<!--              <th class="dragHandle">&nbsp;</th>-->
+<!--&lt;!&ndash;              <th class="checkbox"><input type="checkbox" name="" value="" class="check-all" /></th>&ndash;&gt;-->
+<!--                <th>ID</th>-->
+<!--                <th>Section Id</th>-->
+<!--                <th>Section</th>-->
+<!--                <th>Background color</th>-->
+<!--                <th>Line color</th>-->
+<!--                <th>Top Text</th>-->
+<!--                <th>Sub Text</th>-->
+<!--                <th>Thumb Url</th>-->
+<!--                <th>Top Image Url</th>-->
+<!--                <th>Back Url</th>-->
+<!--                &lt;!&ndash; <th class="action">Delete type</th>&ndash;&gt;-->
+<!--                <th class="action">Edit</th>-->
+<!--                <th class="action">Action</th>-->
+<!--            </tr>-->
+
+<!--              <tr th:each="content : ${listContents}">-->
+<!--                  <td class="dragHandle">&nbsp;</td>-->
+<!--&lt;!&ndash;                  <td class="checkbox"><input type="checkbox" name="" value="" /></td>&ndash;&gt;-->
+<!--                  <td >-->
+<!--                      <a th:text="${content.id}" th:href="@{'/admin/scanner/content/'+${content.id}}"></a>-->
+<!--                  </td>-->
+<!--                  <td th:text="${content.section.id}"></td>-->
+<!--                  <td th:text="${content.section.name}"></td>-->
+<!--                  <td th:text="${content.backgroundColor}"></td>-->
+<!--                  <td th:text="${content.lineColor}"></td>-->
+
+<!--                  <td th:text="${content.topText}"></td>-->
+<!--                  <td th:text="${content.subText}"></td>-->
+
+<!--                  <td>-->
+<!--                      <img th:src="@{${content.thumbUrl}}" width="70" />-->
+<!--                  </td>-->
+<!--                  <td>-->
+<!--                      <img th:src="@{${content.topImageUrl}}" width="70" />-->
+<!--                  </td>-->
+<!--                  <td>-->
+<!--                      <img th:src="@{${content.backUrl}}" width="70" />-->
+<!--                  </td>-->
+
+<!--                  <td class="action">-->
+<!--                      <a href="" th:href="@{'/admin/scanner/content/'+${content.id}}" id="edit" class="ico ico-edit">Edit</a>-->
+<!--                  </td>-->
+
+<!--                  <td class="action">-->
+<!--                      <a href="" th:href="@{/admin/scanner/content/del(id=${content.id},currentpage=${currentpage})}" id="delete" class="ico ico-delete">Delete</a>-->
+<!--                  </td>-->
+
+
+<!--              </tr>-->
+
+<!--          </table>-->
+          <!-- /table -->
+
+          <!-- box-action -->
+
+          <!-- /pagination -->
+<!--       </div>-->
+       <!-- /box -->
+
+        <!-- /box -->
+        <div class="box">
+            <div class="headlines">
+                <h2><span>Add content</span></h2>
+                <a href="#help" class="help"></a>
+            </div>
+            <div class="box-content">
+<!--                <form class="formBox" method="post" action="">-->
+                    <form class="formBox" action="/admin/scanner/add_content" method="post">
+                    <fieldset>
+
+
+                        
+
+                        <!-- Warning form message -->
+                        
+
+                        <div class="form-cols"><!-- two form cols -->
+                            <div class="col1">
+
+                                <div class="clearfix">
+                                    <div class="lab"><label>Section_id<span>*</span></label></div>
+                                    <div class="con">
+                                        <select id="section" class="select" name="tt">
+                                            <option value="1">1. Coupons</option>
+                                            <option value="2">2. Activities</option>
+                                            <option value="3">3. FAQ</option>
+                                            <option value="4">4. Offers</option>
+                                            <option value="5">5. Refer a friend</option>
+                                            <option value="6">6. Contact Us</option>
+                                            <option value="7">7. Menu</option>
+                                            <option value="9">9. News</option>
+<!--                                            <option value="1">1 Coupons</option>-->
+<!--                                            <option value="2">2 Activities</option>-->
+<!--                                            <option value="3">3 FAQ</option>-->
+<!--                                            <option value="4">4 Offers</option>-->
+<!--                                            <option value="5">5 Refer a friend</option>-->
+<!--                                            <option value="6">6 Contact Us</option>-->
+<!--                                            <option value="7">7 Menu</option>-->
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="lab"><label for="color">Background Colour (#ffffff)</label></div>
+                                    <div class="con"><input class="input" type="text" id="color" name="backgroundColor" value=""> </div>
+                                    
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="lab"><label for="linecolor">Line Colour (#ffffff)</label></div>
+                                    <div class="con"><input class="input" type="text" id="linecolor" name="lineColor" value=""></div>
+                                    
+                                </div>
+
+<!--                                <div class="clearfix">-->
+<!--                                    <div class="lab"><label for="input1">section_id <span>*</span></label></div>-->
+<!--                                    <div class="con"><input class="input" type="text" th:field="*{tt}" id="input1" /></div>-->
+<!--                                </div>-->
+
+<!--                                <div class="clearfix">-->
+<!--                                    <div class="lab"><label for="input2">Schedule Id </label></div>-->
+<!--                                    <div class="con"><input class="input" type="text" th:field="*{scheduleId}" id="input2"/></div>-->
+<!--                                </div>-->
+
+<!--                                <div class="clearfix">-->
+<!--                                    <div class="lab"><label for="input1">Content Id</label></div>-->
+<!--                                    <div class="con"><input class="input" type="text" th:field="*{contentId}" id="input1" /></div>-->
+<!--                                </div>-->
+
+                            </div>
+
+
+                            <div class="col2">
+
+                                <div class="clearfix">
+                                    <div class="lab"><label for="topText">Top text</label></div>
+                                    <div class="con"><input class="input" type="text" id="topText" name="topText" value=""></div>
+                                    
+
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="lab"><label for="subText">Sub text</label></div>
+                                    <div class="con"><textarea class="input" rows="6" type="textarea" id="subText" name="subText"></textarea></div>
+                                    
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="lab"><label for="bottomText">Bottom text</label></div>
+                                    <div class="con"><textarea class="input" rows="6" type="textarea" id="bottomText" name="bottomText"></textarea></div>
+                                    
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="lab"><label for="description">Description</label></div>
+                                    <div class="con"><textarea class="input" rows="5" type="textarea" id="description" name="description"></textarea></div>
+                                    
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="clearfix">
+                            <div class="lab"><label for="thumbUrl">Thumb Url</label></div>
+                            <div class="con"><input type="text" class="input" value="" name="thumbUrl" id="thumbUrl"></div>
+                            
+                        </div>
+
+                        <div class="clearfix">
+                            <div class="lab"><label for="topImageUrl">Top Image Url</label></div>
+                            <div class="con"><input type="text" class="input" value="" name="topImageUrl" id="topImageUrl"></div>
+                            
+                        </div>
+
+                        <div class="clearfix">
+                            <div class="lab"><label for="backUrl">Back Image Url</label></div>
+                            <div class="con"><input type="text" class="input" value="" name="backUrl" id="backUrl"></div>
+                            
+                        </div>
+
+                        <div class="btn-submit"><!-- Submit form -->
+                            <input type="submit" value="Submit form" class="button" id="createContent">
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div><!-- /box-content -->
+        </div>
+        <!-- /box -->
+
+
+      
+
+    </div>
+    <!-- /#content -->
+
+
+    <!-- #sidebar -->
+      <div id="sidebar">
+        <!-- mainmenu -->
+        <ul id="floatMenu" class="mainmenu">
+            <li class="first"><a id="goToUsers" class="link" href="/admin/scanner/users">Users</a></li>
+            <li><a id="goToContents" class="link" href="/admin/scanner/content">Content</a></li>
+            <li><a id="goToOffices" class="link" href="/admin/scanner/offices">Offices</a></li>
+            <li><a id="goToScans" class="link" href="/admin/scanner/scans">Scans</a></li>
+            <li><a id="goToOffers" class="link" href="/admin/scanner/offers">Offers</a></li>
+            <li><a id="goToConsents" class="link" href="/admin/scanner/consents">Consents</a></li>
+            <li><a id="goToPayments" class="link" href="/admin/scanner/payments">Payments</a></li>
+            <li class="last"><a id="goToFriends" class="link" href="/admin/scanner/referafriend">Refer a friend</a></li>
+        </ul>
+        <!-- /.mainmenu -->
+    </div>
+    <!-- /#sidebar -->
+
+      <!-- #footer -->
+      <div id="footer">
+        <p>© 2021 Scanner App
+            <!--            | <a href="#main">Top</a>-->
+        </p>
+    </div>
+      <!-- /#footer -->
+	
+  <!-- MODAL WINDOW -->
+	<div id="modal" class="modal-window">
+				
+		<h2>Example modal window</h2>
+
+    <!-- Warning form message -->            
+    <div class="form-message warning">
+      <p>On the page the following error occurred.</p>
+    </div>
+
+		<p>Suspendisse et ante vitae turpis vestibulum fermentum nec nec elit. Suspendisse ullamcorper lacus in arcu mollis fringilla porta mi placerat. Ut at elit non diam tristique scelerisque. </p>
+
+	</div>
+
+  <!-- HELP WINDOW -->
+	<div id="help" class="modal-window">
+				
+		<h2>Example help window</h2>
+
+		<p>Suspendisse et ante vitae turpis vestibulum fermentum nec nec elit. Suspendisse ullamcorper lacus in arcu mollis fringilla porta mi placerat. Ut at elit non diam tristique scelerisque. </p>
+
+    <ul class="list list-square">
+      <li><strong>Lorem ipsum</strong>  dolor sit amet</li>
+      <li><strong>consectetur adipiscing</strong> elit phasellus et risus</li> 
+      <li><strong>Maecenas non</strong> nunc proin eleifend viverra sapien</li>
+    </ul>
+  
+	</div>
+	
+	
+  </div>
+  <!-- /#main --> 
+  
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancy-bg" id="fancy-bg-n"></div><div class="fancy-bg" id="fancy-bg-ne"></div><div class="fancy-bg" id="fancy-bg-e"></div><div class="fancy-bg" id="fancy-bg-se"></div><div class="fancy-bg" id="fancy-bg-s"></div><div class="fancy-bg" id="fancy-bg-sw"></div><div class="fancy-bg" id="fancy-bg-w"></div><div class="fancy-bg" id="fancy-bg-nw"></div><div id="fancybox-inner"></div><a id="fancybox-close"></a><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body></html>
