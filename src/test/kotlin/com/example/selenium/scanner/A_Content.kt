@@ -68,15 +68,17 @@ class A_Content() {
 
     private val DELETE = "Delete"
 
-    @BeforeEach
-    fun setUpAll() {
-        Configuration.browserSize = "1280x800"
-        SelenideLogger.addListener("allure", AllureSelenide())
-    }
 
+//    @BeforeEach
+//    fun setUpAll() {
+//        Configuration.browserSize = "1280x800"
+//        SelenideLogger.addListener("allure", AllureSelenide())
+//    }
+//
     @BeforeEach
-    fun setUp() {
-        Selenide.open(urlForTest)
+    fun printIng() {
+    println("---- Next test: ----")
+
     }
 
 
